@@ -19,8 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    if (cookies.token) {
-      // fetch the user details from the server
+    if (cookies.token !== undefined) {
       void fetchUser()
     } else {
       void router.push(ROUTES.SIGN_IN)
@@ -28,7 +27,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   }, [cookies])
 
   const fetchUser = async (): Promise<void> => {
-    const response = await get(URLS.GET_CURRENT_SESSION) as any
+    const response = (await get(URLS.GET_CURRENT_SESSION)) as any
     const data = await response.json()
     setUser(data)
     setLoading(false)
@@ -45,7 +44,9 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     },
     user,
     loading,
-    setSession: (token: string) => { setCookies('token', token) }
+    setSession: (token: string) => {
+      setCookies('token', token)
+    }
   }
 
   if (router.asPath === ROUTES.SIGN_IN) {
@@ -63,23 +64,27 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   } else {
     return (
       <ThemeProvider theme={theme}>
-        {loading && <>
-          <Head key={'loading-head'}>
-            <title>Loading...</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <span>Loading...</span>
-        </>}
-        {!loading && <Context.Provider value={state}>
-          <Head>
-            <title>App home</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <Header />
-          <div className='mt-[5rem]'>
-            <Component {...pageProps} />
-          </div>
-        </Context.Provider>}
+        {loading && (
+          <>
+            <Head key={'loading-head'}>
+              <title>Loading...</title>
+              <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <span>Loading...</span>
+          </>
+        )}
+        {!loading && (
+          <Context.Provider value={state}>
+            <Head>
+              <title>App home</title>
+              <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <Header />
+            <div className="mt-[5rem]">
+              <Component {...pageProps} />
+            </div>
+          </Context.Provider>
+        )}
       </ThemeProvider>
     )
   }
