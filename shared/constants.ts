@@ -2,7 +2,7 @@ export const URLS = {
   SIGN_IN: '/api/auth/sign-in',
   GET_CURRENT_SESSION: '/api/auth/get-current-session'
 }
-// comment 2
+// comment 3
 export const STATUS_CODES = {
   SUCCESS: 200,
   BAD_REQUEST: 400,
