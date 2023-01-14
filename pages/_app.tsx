@@ -5,48 +5,47 @@ import Head from 'next/head'
 import Context from '@/shared/appContext'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { ROUTES, URLS } from '@/shared/constants'
+import { ROUTES, STATUS_CODES, URLS } from '@/shared/constants'
 import theme from '@/shared/theme'
 import { ThemeProvider } from '@mui/styles'
 import { IAgent } from '@/shared/types'
 import { get } from '@/shared/HTTP'
-import { useCookies } from 'react-cookie'
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
-  const [cookies, setCookies, removeCookie] = useCookies(['token'])
   const router = useRouter()
   const [user, setUser] = useState<IAgent | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
-  // sample test
+
   useEffect(() => {
-    if (cookies.token !== undefined) {
-      void fetchUser()
-    } else {
-      void router.push(ROUTES.SIGN_IN)
-    }
-  }, [cookies])
+    void fetchUser()
+  }, [])
 
   const fetchUser = async (): Promise<void> => {
     const response = (await get(URLS.GET_CURRENT_SESSION)) as any
-    const data = await response.json()
-    setUser(data)
-    setLoading(false)
+    if (response.status === STATUS_CODES.SUCCESS) {
+      const data = await response.json()
+      setUser(data)
+      setLoading(false)
+    } else {
+      setUser(undefined)
+      setLoading(true)
+      void router.push(ROUTES.SIGN_IN)
+    }
   }
 
   const state = {
     setMessage: (args: any) => {
       console.log('args', args)
     },
-    navigateToSignIn: () => {
-      removeCookie('token')
-      setUser(undefined)
-      void router.push(ROUTES.SIGN_IN)
+    navigateToSignIn: async () => {
+      void get('/api/auth/logout').then(() => {
+        void router.push(ROUTES.SIGN_IN)
+        setUser(undefined)
+      })
     },
     user,
     loading,
-    setSession: (token: string) => {
-      setCookies('token', token)
-    }
+    fetchUser
   }
 
   if (router.asPath === ROUTES.SIGN_IN) {

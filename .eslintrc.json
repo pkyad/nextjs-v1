@@ -5,7 +5,8 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "standard-with-typescript"
+        "standard-with-typescript",
+        "next/core-web-vitals"
     ],
     "overrides": [],
     "parserOptions": {
@@ -26,7 +27,8 @@
                 "checksVoidReturn": false
             }
         ],
-        "@typescript-eslint/triple-slash-reference": "off"
+        "@typescript-eslint/triple-slash-reference": "off",
+        "@next/next/no-server-import-in-page": "off"
     },
     "settings": {
         "react": {

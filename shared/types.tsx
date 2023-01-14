@@ -45,5 +45,5 @@ export interface IFilterOption {
 export interface AppContextInterface extends IAppState {
   setMessage?: (args: any) => void
   navigateToSignIn?: () => void
-  setSession?: (token: string) => void
+  fetchUser: () => Promise<void>
 }
