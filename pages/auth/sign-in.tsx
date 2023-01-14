@@ -51,7 +51,8 @@ export const Home = (): React.ReactNode => {
     const data = await res.json()
     if (res.status === STATUS_CODES.SUCCESS) {
       void router.push(ROUTES.HOME)
-      void fetchUser()
+      // test
+      if (fetchUser !== undefined) void fetchUser()
     } else if (res.status === STATUS_CODES.BAD_REQUEST) {
       setServerSideError(data.message)
     }
