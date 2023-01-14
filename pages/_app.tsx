@@ -17,7 +17,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const router = useRouter()
   const [user, setUser] = useState<IAgent | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
-
+  // sample test
   useEffect(() => {
     if (cookies.token !== undefined) {
       void fetchUser()
