@@ -9,13 +9,13 @@ import FieldError from '@/components/atoms/fieldError'
 import { post } from '@/shared/HTTP'
 import useAppContext from '@/shared/hooks/useAppContext'
 
+interface ErrorT extends ErrorObject<string, Record<string, any>, unknown> {}
+
 export const Home = (): React.ReactNode => {
   const router = useRouter()
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [errors, setErrors] = useState<
-  Array<ErrorObject<string, Record<string, any>, unknown>> | null | undefined
-  >()
+  const [errors, setErrors] = useState<ErrorT[] | null | undefined>()
   const [serversideError, setServerSideError] = useState<string | null>(null)
 
   const { loading, user, fetchUser } = useAppContext()

@@ -1,15 +1,22 @@
+// @ts-nocheck
 import { render } from '@testing-library/react'
 import Home from '@/pages/index'
+
 import React from 'react'
+import * as routerModule from 'next/router'
 
 describe('Home', () => {
-  it('renders a heading', () => {
-    render(<Home />)
+  const pushMockFn = jest.fn()
+  it.only('renders a heading', async () => {
+    jest.spyOn(routerModule, 'useRouter').mockImplementation(() => {
+      return {
+        push: pushMockFn
+      }
+    })
 
-    // const heading = screen.getByRole('heading', {
-    //   name: /welcome to next\.js!/i,
-    // })
-
-    expect(1).toBe(1)
+    const container = render(<Home />)
+    expect(pushMockFn).toHaveBeenCalled()
+    const label = container.queryByText('Index page')
+    expect(label).toBeInTheDocument()
   })
 })
