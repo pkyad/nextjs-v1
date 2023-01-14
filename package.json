@@ -21,8 +21,7 @@
       "eslint --fix"
     ],
     "*.{html,css,less,ejs}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "dependencies": {
