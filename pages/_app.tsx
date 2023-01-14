@@ -4,7 +4,7 @@ import Header from '@/components/molecules/header'
 import Head from 'next/head'
 import Context from '@/shared/appContext'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ROUTES, STATUS_CODES, URLS } from '@/shared/constants'
 import theme from '@/shared/theme'
 import { ThemeProvider } from '@mui/styles'
@@ -16,11 +16,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const [user, setUser] = useState<IAgent | undefined>()
   const [loading, setLoading] = useState<boolean>(true)
 
-  useEffect(() => {
-    void fetchUser()
-  }, [])
-
-  const fetchUser = async (): Promise<void> => {
+  const fetchUser = useCallback(async (): Promise<void> => {
     const response = (await get(URLS.GET_CURRENT_SESSION)) as any
     if (response.status === STATUS_CODES.SUCCESS) {
       const data = await response.json()
@@ -31,7 +27,11 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
       setLoading(true)
       void router.push(ROUTES.SIGN_IN)
     }
-  }
+  }, [router])
+
+  useEffect(() => {
+    void fetchUser()
+  }, [fetchUser])
 
   const state = {
     setMessage: (args: any) => {
