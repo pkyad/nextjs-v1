@@ -1,29 +1,22 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router';
 import useStyles from './navigator.styles';
-import {menuItems} from './navigator.constants';
+import { menuItems } from './navigator.constants';
 import NavItem from '@/components/atoms/navItem';
-import useSession from '@/shared/hooks/useSession';
 
-interface INavigatorProps{
+interface INavigatorProps {
     className: string
 }
 
-const Navigator = ({className} : INavigatorProps) => {
+const Navigator = ({ className }: INavigatorProps) => {
 
     const clssess = useStyles();
-    const {isVendor} = useSession();
 
     return (
         <ul className={`flex flex-row ${className} ${clssess.wrapper}`}>
-           {menuItems.map((menuItem , index) => {
-            if (menuItem.hideForVendors && isVendor) {
-                return
-            }
-            return (
-                <NavItem key={index} {...menuItem} />
-            )
-           })}
+            {menuItems.map((menuItem, index) => {
+                return (
+                    <NavItem key={index} {...menuItem} />
+                )
+            })}
         </ul>
     )
 }

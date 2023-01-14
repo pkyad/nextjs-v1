@@ -6,8 +6,10 @@ import { ROUTES, STATUS_CODES, URLS } from '@/shared/constants';
 import { useRouter } from 'next/router';
 import { ErrorObject } from 'ajv';
 import FieldError from '@/components/atoms/fieldError';
-import useSession from '@/shared/hooks/useSession';
 import { post } from '@/shared/HTTP';
+import useAppContext from '@/shared/hooks/useAppContext';
+import { useCookies } from 'react-cookie';
+
 
 export const Home = () => {
 
@@ -17,13 +19,13 @@ export const Home = () => {
   const [errors, setErrors] = useState<ErrorObject<string, Record<string, any>, unknown>[] | null | undefined>()
   const [serversideError, setServerSideError] = useState<string | null>()
 
-  const { setSession, user, loading } = useSession();
+  const { loading, user, setSession } = useAppContext();
 
   useEffect(() => {
     if (!loading && user) {
       router.push(ROUTES.HOME)
     }
-  }, [user, router, loading])
+  }, [loading, user])
 
   const onUsernameChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setUsername(evt.target.value);
@@ -50,13 +52,20 @@ export const Home = () => {
 
     const data = await res.json()
     if (res.status === STATUS_CODES.SUCCESS) {
-      // set token in the cookie
-      setSession(data.token)
-      // router.push('/')
+      if (setSession) {
+        setSession(data.token)
+        router.push(ROUTES.HOME)
+      }
     } else if (res.status === STATUS_CODES.BAD_REQUEST) {
       setServerSideError(data.message)
     }
 
+  }
+
+  const handleKeyUp = ({ code }: React.KeyboardEvent<HTMLInputElement>) => {
+    if (code === 'Enter') {
+      handleSubmit()
+    }
   }
 
   return (
@@ -73,7 +82,7 @@ export const Home = () => {
 
         <FieldError errors={errors} fieldKey="/username" />
 
-        <TextField onChange={onPasswordChange} required className='!mt-5' label="Password" type="password" />
+        <TextField onKeyUp={handleKeyUp} onChange={onPasswordChange} required className='!mt-5' label="Password" type="password" />
 
         <FieldError errors={errors} fieldKey="/password" />
 

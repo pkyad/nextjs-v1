@@ -4,44 +4,65 @@ import Header from '@/components/molecules/header';
 import Head from 'next/head';
 import Context from '@/shared/appContext';
 import { useRouter } from 'next/router';
-import useSession from '@/shared/hooks/useSession';
-import { useEffect } from 'react';
-import { ROUTES } from '@/shared/constants';
+import { useEffect, useState } from 'react';
+import { ROUTES, URLS } from '@/shared/constants';
 import theme from '@/shared/theme';
 import { ThemeProvider } from '@mui/styles';
+import { IAgent } from '@/shared/types';
+import { get } from '@/shared/HTTP';
+import { useCookies } from 'react-cookie';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
 
+  const [cookies, setCookies, removeCookie] = useCookies(['token'])
   const router = useRouter();
-  const {user, loading} = useSession();
+  const [user, setUser] = useState<IAgent | undefined>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if(!loading && !user){
+    if (cookies.token) {
+      // fetch the user details from the server
+      fetchUser()
+    } else {
       router.push(ROUTES.SIGN_IN)
     }
-  }, [user, router, loading])
+  }, [cookies])
+
+  const fetchUser = async () => {
+    const response = await get(URLS.GET_CURRENT_SESSION)
+    const data = await response.json()
+    setUser(data)
+    setLoading(false)
+  }
 
   const state = {
-    setMessage : (args: any) => {
-      console.log("args" , args)
+    setMessage: (args: any) => {
+      console.log("args", args)
     },
-    navigateToSignIn : () => {
-      router.push('/sign-in')
-    }
+    navigateToSignIn: () => {
+      removeCookie('token')
+      setUser(undefined)
+      router.push(ROUTES.SIGN_IN)
+    },
+    user,
+    loading,
+    setSession: (token: string) => setCookies('token', token)
   }
 
 
-  if(router.asPath === ROUTES.SIGN_IN ){
+  if (router.asPath === ROUTES.SIGN_IN) {
     return (
       <>
         <Head>
           <title>Login Page</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Component {...pageProps} />
+        <Context.Provider value={state}>
+          <Component {...pageProps} />
+        </Context.Provider>
       </>
     )
-  }else{
+  } else {
     return (
       <ThemeProvider theme={theme}>
         <Context.Provider value={state}>
@@ -49,7 +70,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             <title>App home</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <Header/>
+          <Header />
           <div className='mt-[5rem]'>
             <Component {...pageProps} />
           </div>
@@ -57,5 +78,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </ThemeProvider>
     )
   }
-  
+
 }
+
+export default MyApp;

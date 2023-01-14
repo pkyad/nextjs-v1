@@ -8,7 +8,7 @@ interface StyleProps {
 
 const useStyles = makeStyles<Theme, StyleProps>((theme) => {
   // console.log({theme})
-  return {
+  return createStyles({
     wrapper: {
       display: 'flex',
       backgroundColor: '#3949AB',
@@ -31,7 +31,7 @@ const useStyles = makeStyles<Theme, StyleProps>((theme) => {
     navigator: {
       marginLeft: '15rem'
     }
-  }
+  })
 })
 
 export default useStyles;
