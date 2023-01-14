@@ -5,6 +5,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
+    "cover": "jest --coverage",
     "test-watch": "jest --watch",
     "test:ci": "jest --ci",
     "lint": "eslint --fix --ext .ts,.tsx .",
