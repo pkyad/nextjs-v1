@@ -11,7 +11,7 @@ const useStyles = makeStyles<Theme, StyleProps>((theme) => {
   return createStyles({
     wrapper: {
       display: 'flex',
-      backgroundColor: '#3949AB',
+      backgroundColor: '#000',
       alignItems: 'center',
       position: 'fixed',
       width: ({ size }) => size ? size : '100%',

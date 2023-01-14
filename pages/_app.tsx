@@ -65,7 +65,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   } else {
     return (
       <ThemeProvider theme={theme}>
-        <Context.Provider value={state}>
+        {loading && <>
+          <Head>
+            <title>Loading...</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <span>Loading...</span>
+        </>}
+        {!loading && <Context.Provider value={state}>
           <Head>
             <title>App home</title>
             <link rel="icon" href="/favicon.ico" />
@@ -74,7 +81,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <div className='mt-[5rem]'>
             <Component {...pageProps} />
           </div>
-        </Context.Provider>
+        </Context.Provider>}
       </ThemeProvider>
     )
   }
