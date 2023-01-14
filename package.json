@@ -8,12 +8,13 @@
     "test-watch": "jest --watch",
     "test:ci": "jest --ci",
     "lint": "eslint --fix --ext .ts,.tsx .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "clean": "rm *.tsbuildinfo"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "post-commit": "rm *.tsbuildinfo"
+      "post-commit": "clean"
     }
   },
   "lint-staged": {
