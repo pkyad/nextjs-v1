@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dataverse-deployment
+  labels:
+    app: dataverse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dataverse
+  template:
+    metadata:
+      labels:
+        app: dataverse
+    spec:
+      containers:
+      - name: dataverse
+        image: 736883081464.dkr.ecr.us-east-2.amazonaws.com/dataverse-platform
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+        env:
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: admin-environment-variables
+                key: JWT_SECRET_TOKEN
+          - name: BACKEND_RESOURCES_BASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: admin-string-variables
+                key: BACKEND_RESOURCES_BASE_URL
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-credentials-dataverse
+                key: AWS_ACCESS_KEY_ID
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aws-credentials-dataverse
+                key: AWS_SECRET_ACCESS_KEY
