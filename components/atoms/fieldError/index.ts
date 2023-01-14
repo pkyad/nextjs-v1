@@ -1,1 +1,1 @@
-export {default} from './FieldError';
+export { default } from './FieldError'

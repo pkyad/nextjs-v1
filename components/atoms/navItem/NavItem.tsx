@@ -1,29 +1,29 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import useStyles from "./navItem.styles";
-import { INavItemProps } from '@/shared/types';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import useStyles from './navItem.styles'
+import { INavItemProps } from '@/shared/types'
+import React from 'react'
 
-const NavItem = ({ link, label, strict }: INavItemProps) => {
+const NavItem = ({ link, label, strict = false }: INavItemProps): JSX.Element => {
+  const { route } = useRouter()
+  const classess = useStyles()
 
-    const { route } = useRouter();
-    const classess = useStyles()
+  let active
+  if (strict) {
+    active = route === link
+  } else {
+    active = route.includes(link)
+  }
 
-    let active;
-    if (strict) {
-        active = route === link;
-    } else {
-        active = route.indexOf(link) > -1;
-    }
-
-    return (
-        <>
-            <li className={active ? 'active' : ''}>
-                <Link href={link}>
-                    <span className={classess.link}>{label}</span>
-                </Link>
-            </li>
-        </>
-    )
+  return (
+    <>
+      <li className={active ? 'active' : ''}>
+        <Link href={link}>
+          <span className={classess.link}>{label}</span>
+        </Link>
+      </li>
+    </>
+  )
 }
 
 export default NavItem

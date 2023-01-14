@@ -1,18 +1,16 @@
-import { ROUTES } from '@/shared/constants';
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
-import { FileDrop } from 'react-file-drop';
+import { ROUTES } from '@/shared/constants'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
 
-export const Home = () => {
-
-  const router = useRouter();
+export const Home = (): React.ReactNode => {
+  const router = useRouter()
   useEffect(() => {
-    router.push(ROUTES.HOME)
+    void router.push(ROUTES.HOME)
   }, [])
 
   return (
-    null
-  );
-};
+    <></>
+  )
+}
 
-export default Home;
+export default Home

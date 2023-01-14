@@ -1,46 +1,42 @@
-import { Alert, Button, Hidden, TextField } from '@mui/material';
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import validator from '@/shared/validators/auth-form';
+import { Alert, Button, TextField } from '@mui/material'
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import validator from '@/shared/validators/auth-form'
 import Image from 'next/image'
-import { ROUTES, STATUS_CODES, URLS } from '@/shared/constants';
-import { useRouter } from 'next/router';
-import { ErrorObject } from 'ajv';
-import FieldError from '@/components/atoms/fieldError';
-import { post } from '@/shared/HTTP';
-import useAppContext from '@/shared/hooks/useAppContext';
-import { useCookies } from 'react-cookie';
+import { ROUTES, STATUS_CODES, URLS } from '@/shared/constants'
+import { useRouter } from 'next/router'
+import { ErrorObject } from 'ajv'
+import FieldError from '@/components/atoms/fieldError'
+import { post } from '@/shared/HTTP'
+import useAppContext from '@/shared/hooks/useAppContext'
 
+export const Home = (): React.ReactNode => {
+  const router = useRouter()
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [errors, setErrors] = useState<Array<ErrorObject<string, Record<string, any>, unknown>> | null | undefined>()
+  const [serversideError, setServerSideError] = useState<string | null>(null)
 
-export const Home = () => {
-
-  const router = useRouter();
-  const [username, setUsername] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const [errors, setErrors] = useState<ErrorObject<string, Record<string, any>, unknown>[] | null | undefined>()
-  const [serversideError, setServerSideError] = useState<string | null>()
-
-  const { loading, user, setSession } = useAppContext();
+  const { loading, user, setSession } = useAppContext()
 
   useEffect(() => {
-    if (!loading && user) {
-      router.push(ROUTES.HOME)
+    if (!loading && (user != null)) {
+      void router.push(ROUTES.HOME)
     }
   }, [loading, user])
 
-  const onUsernameChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    setUsername(evt.target.value);
+  const onUsernameChange = (evt: ChangeEvent<HTMLInputElement>): void => {
+    setUsername(evt.target.value)
   }
-  const onPasswordChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    setPassword(evt.target.value);
+  const onPasswordChange = (evt: ChangeEvent<HTMLInputElement>): void => {
+    setPassword(evt.target.value)
   }
 
-  const resetErrors = () => {
-    setErrors(null);
+  const resetErrors = (): void => {
+    setErrors(null)
     setServerSideError(null)
   }
 
-  const handleSubmit = async () => {
-
+  const handleSubmit = async (): Promise<void> => {
     const payload = { username, password }
     resetErrors()
     if (!validator(payload)) {
@@ -48,23 +44,22 @@ export const Home = () => {
       return
     }
 
-    const res = await post(URLS.SIGN_IN, payload)
+    const res: any = await post(URLS.SIGN_IN, payload)
 
     const data = await res.json()
     if (res.status === STATUS_CODES.SUCCESS) {
-      if (setSession) {
+      if (setSession != null) {
         setSession(data.token)
-        router.push(ROUTES.HOME)
+        void router.push(ROUTES.HOME)
       }
     } else if (res.status === STATUS_CODES.BAD_REQUEST) {
       setServerSideError(data.message)
     }
-
   }
 
-  const handleKeyUp = ({ code }: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUp = ({ code }: React.KeyboardEvent<HTMLInputElement>): void => {
     if (code === 'Enter') {
-      handleSubmit()
+      void handleSubmit()
     }
   }
 
@@ -87,7 +82,7 @@ export const Home = () => {
         <FieldError errors={errors} fieldKey="/password" />
 
         <div className='mt-10'>
-          {serversideError && <Alert severity="error" color="error">
+          {serversideError !== null && <Alert severity="error" color="error">
             {serversideError}
           </Alert>}
         </div>
@@ -96,7 +91,7 @@ export const Home = () => {
       </div>
 
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

@@ -1,9 +1,9 @@
-import { makeStyles, createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles'
 
-import { Theme } from '@emotion/react';
+import { Theme } from '@emotion/react'
 
 interface StyleProps {
-  size: string;
+  size: string
 }
 
 const useStyles = makeStyles<Theme, StyleProps>((theme) => {
@@ -14,7 +14,7 @@ const useStyles = makeStyles<Theme, StyleProps>((theme) => {
       backgroundColor: '#000',
       alignItems: 'center',
       position: 'fixed',
-      width: ({ size }) => size ? size : '100%',
+      width: ({ size = '100%' }) => size,
       top: '0',
       zIndex: 4
     },
@@ -34,7 +34,4 @@ const useStyles = makeStyles<Theme, StyleProps>((theme) => {
   })
 })
 
-export default useStyles;
-
-
-
+export default useStyles

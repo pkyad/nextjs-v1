@@ -1,13 +1,7 @@
-import { createContext } from 'react';
-import initialState from './state';
-import { IAgent, IAppState } from './types';
+import { createContext } from 'react'
+import initialState from './state'
+import { AppContextInterface } from './types'
 
-interface AppContextInterface extends IAppState {
-    setMessage?: (args: any) => void,
-    navigateToSignIn?: () => void,
-    setSession?: (token: string) => void
-}
+const appContext = createContext<AppContextInterface>(initialState)
 
-const appContext = createContext<AppContextInterface>(initialState);
-
-export default appContext;
+export default appContext

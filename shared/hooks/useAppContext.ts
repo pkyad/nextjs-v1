@@ -1,7 +1,8 @@
-import {useContext} from 'react';
-import appContext from '../appContext';
+import { useContext } from 'react'
+import appContext from '../appContext'
+import { AppContextInterface } from '../types'
 
-const useAppContext = () => {
-    return useContext(appContext)
+const useAppContext = (): AppContextInterface => {
+  return useContext(appContext)
 }
-export default useAppContext;
+export default useAppContext

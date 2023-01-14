@@ -1,5 +1,5 @@
-import { INavItemProps } from "@/shared/types";
+import { INavItemProps } from '@/shared/types'
 
 export const menuItems: INavItemProps[] = [
-    { link: '/profile', label: 'Profile' },
-] 
+  { link: '/profile', label: 'Profile' }
+]

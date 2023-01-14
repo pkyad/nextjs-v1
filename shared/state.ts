@@ -1,9 +1,8 @@
-import { IAppState } from "./types";
-
+import { IAppState } from './types'
 
 const initialState: IAppState = {
-    user: null,
-    loading: true
+  user: null,
+  loading: true
 }
 
-export default initialState;
+export default initialState

@@ -1,35 +1,34 @@
 import '@/styles/global.css'
 import type { AppProps } from 'next/app'
-import Header from '@/components/molecules/header';
-import Head from 'next/head';
-import Context from '@/shared/appContext';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { ROUTES, URLS } from '@/shared/constants';
-import theme from '@/shared/theme';
-import { ThemeProvider } from '@mui/styles';
-import { IAgent } from '@/shared/types';
-import { get } from '@/shared/HTTP';
-import { useCookies } from 'react-cookie';
+import Header from '@/components/molecules/header'
+import Head from 'next/head'
+import Context from '@/shared/appContext'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { ROUTES, URLS } from '@/shared/constants'
+import theme from '@/shared/theme'
+import { ThemeProvider } from '@mui/styles'
+import { IAgent } from '@/shared/types'
+import { get } from '@/shared/HTTP'
+import { useCookies } from 'react-cookie'
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
-
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const [cookies, setCookies, removeCookie] = useCookies(['token'])
-  const router = useRouter();
-  const [user, setUser] = useState<IAgent | undefined>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter()
+  const [user, setUser] = useState<IAgent | undefined>()
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    if (cookies.token) {
+    if (cookies.token !== undefined) {
       // fetch the user details from the server
-      fetchUser()
+      void fetchUser()
     } else {
-      router.push(ROUTES.SIGN_IN)
+      void router.push(ROUTES.SIGN_IN)
     }
   }, [cookies])
 
-  const fetchUser = async () => {
-    const response = await get(URLS.GET_CURRENT_SESSION)
+  const fetchUser = async (): Promise<void> => {
+    const response = await get(URLS.GET_CURRENT_SESSION) as any
     const data = await response.json()
     setUser(data)
     setLoading(false)
@@ -37,18 +36,17 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   const state = {
     setMessage: (args: any) => {
-      console.log("args", args)
+      console.log('args', args)
     },
     navigateToSignIn: () => {
       removeCookie('token')
       setUser(undefined)
-      router.push(ROUTES.SIGN_IN)
+      void router.push(ROUTES.SIGN_IN)
     },
     user,
     loading,
-    setSession: (token: string) => setCookies('token', token)
+    setSession: (token: string) => { setCookies('token', token) }
   }
-
 
   if (router.asPath === ROUTES.SIGN_IN) {
     return (
@@ -66,7 +64,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
       <ThemeProvider theme={theme}>
         {loading && <>
-          <Head>
+          <Head key={'loading-head'}>
             <title>Loading...</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
@@ -85,7 +83,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </ThemeProvider>
     )
   }
-
 }
 
-export default MyApp;
+export default MyApp

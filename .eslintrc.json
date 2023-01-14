@@ -1,15 +1,36 @@
 {
-  "root": true,
-  "extends": ["next/core-web-vitals"],
-  "plugins": ["testing-library"],
-  "overrides": [
-    // Only uses Testing Library lint rules in test files
-    {
-      "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
-      "extends": ["plugin:testing-library/react"]
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard-with-typescript"
+    ],
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": [
+            "tsconfig.json"
+        ]
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "@typescript-eslint/no-misused-promises": [
+            "error",
+            {
+                "checksConditionals": false,
+                "checksVoidReturn": false
+            }
+        ],
+        "@typescript-eslint/triple-slash-reference": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
-  ]
 }
