@@ -19,7 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    if (cookies.token !== undefined) {
+    if (cookies.token) {
       // fetch the user details from the server
       void fetchUser()
     } else {
