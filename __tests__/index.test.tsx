@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { render } from '@testing-library/react'
 import Home from '@/pages/index'
-
 import React from 'react'
 import * as routerModule from 'next/router'
 
@@ -13,10 +12,9 @@ describe('Home', () => {
         push: pushMockFn
       }
     })
-
-    const container = render(<Home />)
+    const { queryByText } = render(<Home />)
     expect(pushMockFn).toHaveBeenCalled()
-    const label = container.queryByText('Index page')
+    const label = queryByText('Index page')
     expect(label).toBeInTheDocument()
   })
 })
