@@ -10,18 +10,18 @@
     "test:ci": "jest --ci",
     "lint": "eslint --fix --ext .ts,.tsx .",
     "prepare": "husky install",
-    "clean": "rm *.tsbuildinfo"
+    "clean": "rm *.tsbuildinfo || true"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged --debug"
     }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
       "prettier --write",
       "eslint --fix",
-      "tsc-files"
+      "tsc-files --noEmit"
     ],
     "*.{html,css,less,ejs}": [
       "prettier --write"
@@ -81,6 +81,7 @@
     "jest": "28.1.0",
     "jest-environment-jsdom": "28.1.0",
     "lint-staged": "^13.1.0",
+    "next-router-mock": "^0.9.1-beta.0",
     "prettier": "^2.8.3",
     "typescript": "*"
   }
