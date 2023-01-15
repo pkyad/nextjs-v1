@@ -33,7 +33,7 @@ describe('_app', () => {
     })
   })
 
-  it.only('renders a the login page', async () => {
+  it('renders a the login page', async () => {
     void mockRouter.push('/auth/sign-in')
 
     jest.spyOn(useAppContextModule, 'default').mockImplementation(() => {
