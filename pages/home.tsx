@@ -1,9 +1,14 @@
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
 
 const Home = (): React.ReactNode => {
-  return <>
-    <h1>Home</h1>
-  </>
+  const router = useRouter()
+  useEffect(() => {}, [router])
+  return (
+    <>
+      <h1>Home</h1>
+    </>
+  )
 }
 
 export default Home
