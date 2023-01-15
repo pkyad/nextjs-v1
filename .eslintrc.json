@@ -20,6 +20,7 @@
         "react"
     ],
     "rules": {
+        "no-console": "error",
         "@typescript-eslint/no-misused-promises": [
             "error",
             {
@@ -28,7 +29,8 @@
             }
         ],
         "@typescript-eslint/triple-slash-reference": "off",
-        "@next/next/no-server-import-in-page": "off"
+        "@next/next/no-server-import-in-page": "off",
+        "react-hooks/exhaustive-deps": "off"
     },
     "settings": {
         "react": {
