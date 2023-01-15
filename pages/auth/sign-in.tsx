@@ -11,7 +11,7 @@ import useAppContext from '@/shared/hooks/useAppContext'
 
 interface ErrorT extends ErrorObject<string, Record<string, any>, unknown> {}
 
-export const Home = (): React.ReactNode => {
+export const SignIn = (): React.ReactNode => {
   const router = useRouter()
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -25,7 +25,6 @@ export const Home = (): React.ReactNode => {
       void router.push(ROUTES.HOME)
     }
   }, [loading, user, router])
-
   const onUsernameChange = (evt: ChangeEvent<HTMLInputElement>): void => {
     setUsername(evt.target.value)
   }
@@ -111,4 +110,4 @@ export const Home = (): React.ReactNode => {
   )
 }
 
-export default Home
+export default SignIn
