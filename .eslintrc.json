@@ -30,7 +30,8 @@
         ],
         "@typescript-eslint/triple-slash-reference": "off",
         "@next/next/no-server-import-in-page": "off",
-        "react-hooks/exhaustive-deps": "off"
+        "react-hooks/exhaustive-deps": "off",
+        "@typescript-eslint/valid-module": "off"
     },
     "settings": {
         "react": {
