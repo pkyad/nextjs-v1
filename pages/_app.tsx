@@ -47,7 +47,19 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     loading,
     fetchUser
   }
-  if (router.asPath === ROUTES.SIGN_IN) {
+  if (router.asPath === '/docs') {
+    return (
+      <>
+        <Head>
+          <title>API Docs</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Context.Provider value={state}>
+          <Component {...pageProps} />
+        </Context.Provider>
+      </>
+    )
+  } else if (router.asPath === ROUTES.SIGN_IN) {
     return (
       <>
         <Head>

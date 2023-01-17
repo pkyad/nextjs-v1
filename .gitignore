@@ -44,3 +44,4 @@ storybook-static
 cypress/screenshots
 cypress/videos
 docs
+public/swagger.json

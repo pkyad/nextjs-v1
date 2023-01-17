@@ -4,6 +4,15 @@ import { STATUS_CODES } from '@/shared/constants'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
 
+/**
+ * @swagger
+ * /api/hello:
+ *   get:
+ *     description: Returns the hello world
+ *     responses:
+ *       200:
+ *         description: hello world
+ */
 const handler = (req: NextApiRequest, res: NextApiResponse): void => {
   try {
     const data = jwt.verify(
