@@ -43,3 +43,4 @@ tsconfig.*
 storybook-static
 cypress/screenshots
 cypress/videos
+docs
