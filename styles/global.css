@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.swagger-ui {
+  padding-top: 5rem;
+}
+
 html,
 body {
   padding: 0;
@@ -20,7 +24,7 @@ main {
   flex-direction: column;
 }
 
-.search-input input{
+.search-input input {
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
 }
@@ -33,7 +37,6 @@ main {
   -o-user-select: none;
   user-select: none;
 }
-
 
 .file-drop {
   /* relatively position the container bc the contents are absolute */
@@ -79,7 +82,6 @@ main {
 
   text-align: center;
 }
-
 
 .file-drop-target.file-drop-dragging-over-target {
   /* turn stuff orange when we are dragging over the target */

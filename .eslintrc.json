@@ -8,7 +8,16 @@
         "standard-with-typescript",
         "next/core-web-vitals"
     ],
-    "overrides": [],
+    "overrides": [
+        {
+            "files": [
+                "pages/api/**/*.ts"
+            ],
+            "rules": {
+                "@typescript-eslint/explicit-function-return-type": "off"
+            }
+        }
+    ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",

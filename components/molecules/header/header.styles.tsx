@@ -27,9 +27,6 @@ const useStyles = makeStyles<Theme, StyleProps>((theme) => {
     brandName: {
       color: 'white',
       fontSize: '1.4rem'
-    },
-    navigator: {
-      marginLeft: '15rem'
     }
   })
 })

@@ -6,12 +6,15 @@ import jwt from 'jsonwebtoken'
 
 /**
  * @swagger
- * /api/hello:
- *   get:
- *     description: Returns the hello world
- *     responses:
+ * /api/auth/get-current-session:
+ *  get:
+ *    description: Returns the current user meta data in json
+ *    responses:
  *       200:
- *         description: hello world
+ *         description: returns current user object, should only be called
+ *          once for a entire load or after sign in
+ *       401:
+ *         description: if the jwt token is not present in the cookie or its invalid
  */
 const handler = (req: NextApiRequest, res: NextApiResponse): void => {
   try {

@@ -12,7 +12,8 @@ const customJestConfig = {
     // Handle module aliases (this will be automatically configured for you soon)
     '^@/components/(.*)$': '<rootDir>/components/$1',
     '^@/shared/(.*)$': '<rootDir>/shared/$1',
-    '^@/pages/(.*)$': '<rootDir>/pages/$1'
+    '^@/pages/(.*)$': '<rootDir>/pages/$1',
+    '^@/mocks/(.*)$': '<rootDir>/mocks/$1'
   },
   testEnvironment: 'jest-environment-jsdom',
   collectCoverageFrom: ['**/**/*.{ts,tsx}'],

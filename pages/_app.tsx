@@ -10,6 +10,7 @@ import theme from '@/shared/theme'
 import { ThemeProvider } from '@mui/styles'
 import { IAgent } from '@/shared/types'
 import { get } from '@/shared/HTTP'
+import Navigator from '@/components/molecules/navigator'
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const router = useRouter()
@@ -54,6 +55,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
           <title>API Docs</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
+        <Header />
         <Context.Provider value={state}>
           <Component {...pageProps} />
         </Context.Provider>
@@ -89,7 +91,9 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
               <title>App home</title>
               <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Header />
+            <Header>
+              <Navigator className="ml-[15rem]" />
+            </Header>
             <div className="mt-[5rem]">
               <Component {...pageProps} />
             </div>
