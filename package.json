@@ -20,7 +20,8 @@
     "docs": "jsdoc -c jsdoc.conf.json",
     "swagger-gen": "next-swagger-doc-cli swagger.config.json",
     "openapi:yaml": "typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/openapi' 'models/*.ts'",
-    "postbuild": "cpy 'models/**/*.swagger.yaml' public/openapi --flat"
+    "postbuild": "cpy 'models/**/*.swagger.yaml' public/openapi --flat",
+    "update-openapi-client": "openapi-generator-cli generate -i http://localhost:8000/openapi -o shared/proxy --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true"
   },
   "husky": {
     "hooks": {
