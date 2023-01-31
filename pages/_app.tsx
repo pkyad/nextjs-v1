@@ -51,12 +51,12 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   if (router.asPath === '/docs') {
     return (
       <>
-        <Head>
-          <title>API Docs</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <Header />
         <Context.Provider value={state}>
+          <Head>
+            <title>API Docs</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <Header />
           <Component {...pageProps} />
         </Context.Provider>
       </>

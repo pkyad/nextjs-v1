@@ -36,18 +36,17 @@ const apiClient = {
  *         description: if the jwt token is not present in the cookie or its invalid
  */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const data = await apiClient.testApi.listtestViews({
+  const extraData = await apiClient.testApi.listtestViews({
     filePath: 'testfilepath'
   })
   // eslint-disable-next-line no-console
-  console.log({ data })
 
   try {
     const data = jwt.verify(
       req.cookies.token as string,
       process.env.JWT_SECRET as string
-    )
-    res.status(STATUS_CODES.SUCCESS).json(data)
+    ) as object
+    res.status(STATUS_CODES.SUCCESS).json({ ...data, ...extraData })
   } catch (e) {
     res.status(STATUS_CODES.UNAUTHORIZED).json({ message: 'Invalid session' })
   }
