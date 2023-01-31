@@ -9,7 +9,17 @@ export interface INavItemProps {
   strict?: boolean
 }
 
+/**
+ *
+ * @export
+ * @interface IUserMetaData
+ */
 interface IUserMetaData {
+  /**
+   * The user ID.
+   * @type {string}
+   * @memberof IUserMetaData
+   */
   key: string
   value?: string
 }
