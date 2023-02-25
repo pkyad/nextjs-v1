@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "packages": {
+    "package1": {
+      "signature": "f7eb78d0e21b150e0fe13b3890adaef1",
+      "file": true
+    },
+    "uilib1": {
+      "signature": "d25c910ca8fc8b646e9f72c8e348c9b3",
+      "file": true
+    }
+  }
+}

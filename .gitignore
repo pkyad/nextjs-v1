@@ -46,3 +46,4 @@ cypress/videos
 docs
 public/swagger.json
 shared/proxy
+.yalc

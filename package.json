@@ -39,17 +39,15 @@
     ]
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.165.0",
-    "@aws-sdk/client-s3": "^3.165.0",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.8.2",
     "@mui/styles": "^5.8.0",
+    "@pkyad/uilib1": "0.0.0",
     "@types/crypto-js": "^4.1.1",
     "@types/formidable": "^2.0.5",
     "ajv": "^8.11.0",
     "autoprefixer": "^10.4.7",
-    "aws-sdk": "^2.1222.0",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "cookies-next": "^2.1.1",
@@ -68,7 +66,8 @@
     "sharp": "^0.31.3",
     "styled-components": "^5.3.5",
     "swagger-ui-react": "^4.15.5",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.0.24",
+    "uilib1": "file:.yalc/uilib1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
