@@ -9,7 +9,7 @@ const Home = (): React.ReactNode => {
   useEffect(() => {}, [router])
   return (
     <>
-      <h1>Home</h1>
+      <h1>Home Edited</h1>
       <Button color="success" onClick={() => {}}>
         Success Button
       </Button>
