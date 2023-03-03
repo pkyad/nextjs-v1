@@ -21,7 +21,8 @@
     "swagger-gen": "next-swagger-doc-cli swagger.config.json",
     "openapi:yaml": "typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/openapi' 'models/*.ts'",
     "postbuild": "cpy 'models/**/*.swagger.yaml' public/openapi --flat",
-    "update-openapi": "openapi-generator-cli generate -i http://localhost:8000/openapi?dev-token=$DEV_TOKEN -o shared/proxy --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true"
+    "update-openapi": "openapi-generator-cli generate -i http://localhost:8000/openapi?dev-token=$DEV_TOKEN -o shared/proxy --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
+    "commitlint": "commitlint --edit"
   },
   "husky": {
     "hooks": {
@@ -43,7 +44,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.8.2",
     "@mui/styles": "^5.8.0",
-    "@pkyad/uilib1": "0.0.0",
+    "@pkyad/uilib1": "1.6.0",
     "@types/crypto-js": "^4.1.1",
     "@types/formidable": "^2.0.5",
     "ajv": "^8.11.0",
@@ -75,6 +76,8 @@
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.8.2",
     "@mui/types": "^7.1.3",
+    "@commitlint/cli": "^17.4.1",
+		"@commitlint/config-conventional": "^17.4.0",
     "@storybook/addon-actions": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.15",
     "@storybook/addon-interactions": "^6.5.15",
