@@ -1,6 +1,7 @@
 {
   "name": "@pkyad/test1",
-  "version": "1.0.0",
+  "private": true,
+  "version": "1.1.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,10 +20,8 @@
     "e2e": "start-server-and-test dev http://localhost:3000 cypress",
     "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless",
     "docs": "jsdoc -c jsdoc.conf.json",
-    "swagger-gen": "next-swagger-doc-cli swagger.config.json",
-    "openapi:yaml": "typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/openapi' 'models/*.ts'",
-    "postbuild": "cpy 'models/**/*.swagger.yaml' public/openapi --flat",
-    "update-openapi": "openapi-generator-cli generate -i http://localhost:8000/openapi?dev-token=$DEV_TOKEN -o shared/proxy --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
+    "swagger-gen": "typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/build' 'models/*.ts';next-swagger-doc-cli swagger.config.json",
+    "update-openapi-client": "openapi-generator-cli generate -i http://localhost:8000/openapi?dev-token=$DEV_TOKEN -o shared/proxy --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
     "commitlint": "commitlint --edit",
     "changeset": "changeset"
   },
@@ -74,13 +73,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@changesets/cli": "^2.26.0",
+    "@commitlint/cli": "^17.4.1",
+    "@commitlint/config-conventional": "^17.4.0",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.8.2",
     "@mui/types": "^7.1.3",
-    "@changesets/cli": "^2.26.0",
-    "@commitlint/cli": "^17.4.1",
-    "@commitlint/config-conventional": "^17.4.0",
     "@storybook/addon-actions": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.15",
     "@storybook/addon-interactions": "^6.5.15",
@@ -100,6 +99,7 @@
     "babel-loader": "^8.3.0",
     "better-docs": "^2.7.2",
     "clean-jsdoc-theme": "^4.2.2",
+    "cpy-cli": "^4.2.0",
     "cypress": "10.3.1",
     "eslint": "^8.0.1",
     "eslint-config-next": "12.1.6",
@@ -119,6 +119,7 @@
     "prettier": "^2.8.3",
     "start-server-and-test": "1.14.0",
     "tsc-files": "^1.1.3",
+    "typeconv": "^2.1.0",
     "typescript": "*"
   }
 }

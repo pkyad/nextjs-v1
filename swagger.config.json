@@ -6,7 +6,7 @@
   "definition": {
     "openapi": "3.0.0",
     "info": {
-      "title": "REST API Docs",
+      "title": "REST API Docs v3",
       "version": "1.0"
     }
   }

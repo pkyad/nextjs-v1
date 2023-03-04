@@ -27,7 +27,7 @@ const apiClient = {
  * @swagger
  * /api/auth/get-current-session:
  *  get:
- *    description: Returns the current user meta data in json
+ *    description: Returns the current user meta data in json edited
  *    responses:
  *       200:
  *         description: returns current user object, should only be called

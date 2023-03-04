@@ -1,5 +1,11 @@
 # @pkyad/test1
 
+## 1.1.0
+
+### Minor Changes
+
+- Second changelog
+
 ## 1.0.0
 
 ### Major Changes

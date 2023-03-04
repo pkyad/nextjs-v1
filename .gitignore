@@ -45,5 +45,7 @@ cypress/screenshots
 cypress/videos
 docs
 public/swagger.json
+public/openapi
 shared/proxy
 .yalc
+models/build
