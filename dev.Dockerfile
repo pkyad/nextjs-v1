@@ -8,9 +8,11 @@ RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
-
 ENV PORT 4500
 
-EXPOSE 4500
 WORKDIR /app
+# copy the modules installed
+COPY --from=deps /app ./
+
+EXPOSE 4500
 

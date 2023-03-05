@@ -1,12 +1,16 @@
- version: '3.9'
+version: '3.9'
 
- services: 
-    web: 
+services:
+    web:
         build:
             dockerfile: dev.Dockerfile
         command: yarn dev
-        ports: 
-            - 4500:4500 
-
+        ports:
+            - 4500:4500
         volumes:
-          - ./:/app
+            # save the node_modules in docker volume otherwise docker will overwrite node_modules while mounting ./ to /app
+            - nextjs-v1:/app/node_modules
+            - ./:/app
+
+volumes:
+    nextjs-v1:
