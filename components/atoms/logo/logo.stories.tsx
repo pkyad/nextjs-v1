@@ -1,23 +1,19 @@
 /* eslint-disable no-import-assign */
-
-import React from 'react'
-
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-
-import Logo from '.'
-
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 import * as NextImage from 'next/image'
+import React from 'react'
+import Logo from '.'
 
 const OriginalNextImage = NextImage.default
 
 Object.defineProperty(NextImage, 'default', {
-  configurable: true,
-  value: (props: any) => <OriginalNextImage {...props} unoptimized />
+	configurable: true,
+	value: (props: any) => <OriginalNextImage {...props} unoptimized />
 })
 
 const config: ComponentMeta<typeof Logo> = {
-  title: 'Logo',
-  component: Logo
+	title: 'Logo',
+	component: Logo
 }
 
 export default config

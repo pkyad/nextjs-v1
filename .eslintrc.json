@@ -43,6 +43,10 @@
     ],
     "rules": {
         "no-console": "error",
+        "multiline-ternary": "off",
+        "indent": "off",
+        "no-tabs": "off",
+        "@typescript-eslint/indent": "off",
         "@typescript-eslint/no-misused-promises": [
             "error",
             {
