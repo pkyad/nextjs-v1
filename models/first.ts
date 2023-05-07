@@ -5,4 +5,6 @@ export interface model1 {
   var4: string
   var5: number
   var6: number[]
+  var7: number[]
+  var8: number[]
 }
