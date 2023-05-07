@@ -1,5 +1,11 @@
 # @pkyad/test1
 
+## 1.3.0
+
+### Minor Changes
+
+- storybook version bump
+
 ## 1.2.0
 
 ### Minor Changes
