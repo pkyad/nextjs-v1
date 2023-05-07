@@ -6,6 +6,15 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 /**
  * @swagger
+ * /api/auth/sign-in:
+ *  get:
+ *    description: Returns the current user meta data in json edited
+ *    responses:
+ *       200:
+ *         description: returns current user object, should only be called
+ *          once for a entire load or after sign in
+ *       401:
+ *         description: if the jwt token is not present in the cookie or its invalid
  */
 const handler = async (
 	req: NextApiRequest,
