@@ -30,3 +30,20 @@ run `yarn docs` to genetrate a jsDoc based documentation site
 This will generate in ROOT/docs folder so you need to preview using a web server / live server in vscode for e.g.
 
 Bonus: This README.md is the landing page for the docs
+
+for commiting use correct message format
+e.g. git commit -m "feat: added feature one"
+
+then run
+
+yarn changeset
+
+this will create a changeset file in the .changeset folder
+
+then run
+
+yarn gen-changelog
+
+then commit files with
+
+git commit -m "chore: version release"

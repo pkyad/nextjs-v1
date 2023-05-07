@@ -1,5 +1,11 @@
 # @pkyad/test1
 
+## 1.2.0
+
+### Minor Changes
+
+- readme update
+
 ## 1.1.0
 
 ### Minor Changes
