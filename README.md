@@ -15,8 +15,8 @@ To generate openAPI spec file we can run
 `yarn swagger-gen`
 
 If we are not planning to use it as a backend service then why we have to generate swagger file ?
-A: It has 2 use cases. First to have swagger UI for developer to read API documentation. What , how and when
-and second, we are not planning to use the endpoints directly using axios or fetch calls. Instead we will generate a client module for typesafety
+A: It has 2 use cases. First, to have swagger UI for developer to read API documentation. What , how and when
+and second, we are not planning to use the endpoints directly using axios or fetch calls. Instead we will generate a **client** module for typesafety
 and then use it
 
 ## Proxies to real backend services
