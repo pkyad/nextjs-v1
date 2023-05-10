@@ -1,58 +1,66 @@
 // @ts-nocheck
-import { act, render, screen, waitFor } from '@testing-library/react'
 import MyApp from '@/pages/_app'
-import React from 'react'
+import SignIn from '@/pages/auth/sign-in'
 import Home from '@/pages/home'
 import { STATUS_CODES } from '@/shared/constants'
-import mockRouter from 'next-router-mock'
-import SignIn from '@/pages/auth/sign-in'
 import * as useAppContextModule from '@/shared/hooks/useAppContext'
+import { act, render, screen, waitFor } from '@testing-library/react'
+import mockRouter from 'next-router-mock'
+import React from 'react'
 
 jest.mock('next/router', () => require('next-router-mock'))
 jest.mock('@/shared/hooks/useAppContext', () => {
-  return {
-    __esModule: true,
-    ...jest.requireActual('@/shared/hooks/useAppContext')
-  }
+	return {
+		__esModule: true,
+		...jest.requireActual('@/shared/hooks/useAppContext')
+	}
 })
 
 describe('_app', () => {
-  it('renders a home page', async () => {
-    void mockRouter.push('/home')
-    global.fetch = async () => {
-      return await Promise.resolve({
-        json: async () => await Promise.resolve({ firstName: 'Admin Test' }),
-        status: STATUS_CODES.SUCCESS
-      })
-    }
-    await act(async () => {
-      render(<MyApp Component={Home} />)
-    })
-    await waitFor(() => {
-      expect(screen.getByText('Admin Test')).toBeInTheDocument()
-    })
-  })
+	it('renders a home page', async () => {
+		void mockRouter.push('/home')
+		global.fetch = async (url) => {
+			return await Promise.resolve({
+				json: async () => {
+					if (url === '/api/auth/get-current-session') {
+						return await Promise.resolve({ firstName: 'Admin Test' })
+					} else {
+						return await Promise.resolve([
+							{ result: { data: { json: { greeting: 'Hello from tRPC' } } } }
+						])
+					}
+				},
+				status: STATUS_CODES.SUCCESS
+			})
+		}
+		await act(async () => {
+			render(<MyApp Component={Home} />)
+		})
+		await waitFor(() => {
+			expect(screen.getByText('Admin Test')).toBeInTheDocument()
+		})
+	})
 
-  it('renders a the login page', async () => {
-    void mockRouter.push('/auth/sign-in')
+	it('renders a the login page', async () => {
+		void mockRouter.push('/auth/sign-in')
 
-    jest.spyOn(useAppContextModule, 'default').mockImplementation(() => {
-      return { loading: false, user: null, fetchUser: jest.fn() }
-    })
+		jest.spyOn(useAppContextModule, 'default').mockImplementation(() => {
+			return { loading: false, user: null, fetchUser: jest.fn() }
+		})
 
-    global.fetch = async () => {
-      return await Promise.resolve({
-        json: async () => await Promise.resolve({}),
-        status: STATUS_CODES.SERVER_ERROR
-      })
-    }
-    await act(async () => {
-      render(<MyApp Component={SignIn} />)
-    })
-    await waitFor(() => {
-      expect(
-        screen.getByText('Sign in with username and password')
-      ).toBeInTheDocument()
-    })
-  })
+		global.fetch = async () => {
+			return await Promise.resolve({
+				json: async () => await Promise.resolve({}),
+				status: STATUS_CODES.SERVER_ERROR
+			})
+		}
+		await act(async () => {
+			render(<MyApp Component={SignIn} />)
+		})
+		await waitFor(() => {
+			expect(
+				screen.getByText('Sign in with username and password')
+			).toBeInTheDocument()
+		})
+	})
 })
