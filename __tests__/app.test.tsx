@@ -3,6 +3,7 @@ import MyApp from '@/pages/_app'
 import SignIn from '@/pages/auth/sign-in'
 import Home from '@/pages/home'
 import { STATUS_CODES } from '@/shared/constants'
+import mockSetup from '@/shared/helpers/mock-setup'
 import * as useAppContextModule from '@/shared/hooks/useAppContext'
 import { act, render, screen, waitFor } from '@testing-library/react'
 import mockRouter from 'next-router-mock'
@@ -15,24 +16,11 @@ jest.mock('@/shared/hooks/useAppContext', () => {
 		...jest.requireActual('@/shared/hooks/useAppContext')
 	}
 })
-
+mockSetup()
 describe('_app', () => {
 	it('renders a home page', async () => {
 		void mockRouter.push('/home')
-		global.fetch = async (url) => {
-			return await Promise.resolve({
-				json: async () => {
-					if (url === '/api/auth/get-current-session') {
-						return await Promise.resolve({ firstName: 'Admin Test' })
-					} else {
-						return await Promise.resolve([
-							{ result: { data: { json: { greeting: 'Hello from tRPC' } } } }
-						])
-					}
-				},
-				status: STATUS_CODES.SUCCESS
-			})
-		}
+
 		await act(async () => {
 			render(<MyApp Component={Home} />)
 		})
