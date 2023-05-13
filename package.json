@@ -26,7 +26,8 @@
 		"commitlint": "commitlint --edit",
 		"changeset": "changeset",
 		"gen-changelog": "changeset version",
-		"script1": "tsx scripts/main.ts"
+		"script1": "tsx scripts/main.ts",
+		"gen-client": "yarn swagger-gen;tsx scripts/fix-swagger.ts;yarn update-openapi-client"
 	},
 	"husky": {
 		"hooks": {
