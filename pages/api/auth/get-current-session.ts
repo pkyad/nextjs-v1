@@ -12,6 +12,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
  * /api/auth/get-current-session:
  *  get:
  *    description: Returns the current user meta data in json edited
+ *    operationId: getCurrentSession
  *    responses:
  *       200:
  *         description: returns current user object, should only be called

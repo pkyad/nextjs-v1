@@ -1,26 +1,19 @@
-import { model1 } from 'models/first'
+import { helloResponseType } from 'models/first'
 import type { NextApiRequest, NextApiResponse } from 'next'
-
-interface Task {
-	userId: number
-	id: number
-	title: string
-	completed: boolean
-}
-
-interface helloResponseType {
-	tasks: Task[]
-	testObj?: model1
-}
 
 /**
  * @swagger
  * /api/hello:
  *   get:
  *     description: Returns the hello world response
+ *     operationId: hello
  *     responses:
  *       200:
  *         description: hello world
+ *         content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/helloResponseType'
  */
 const handler = async (
 	req: NextApiRequest,

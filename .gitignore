@@ -49,4 +49,7 @@ public/openapi
 proxy
 .yalc
 models/build
-shared/http-client
+shared/http-client/.openapi-generator
+shared/http-client/apis
+shared/http-client/models
+shared/http-client/runtime.ts

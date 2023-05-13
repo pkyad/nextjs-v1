@@ -1,8 +1,8 @@
 import Header from '@/components/molecules/header'
 import Navigator from '@/components/molecules/navigator'
 import Context from '@/shared/appContext'
-import { ROUTES, STATUS_CODES, URLS } from '@/shared/constants'
-import { get } from '@/shared/HTTP'
+import { ROUTES } from '@/shared/constants'
+import apiClient from '@/shared/http-client'
 import theme from '@/shared/theme'
 import { trpc } from '@/shared/trpc-client'
 import { IAgent } from '@/shared/types'
@@ -19,12 +19,11 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 	const [loading, setLoading] = useState<boolean>(true)
 
 	const fetchUser = async (): Promise<void> => {
-		const response = (await get(URLS.GET_CURRENT_SESSION)) as any
-		if (response.status === STATUS_CODES.SUCCESS) {
-			const data = await response.json()
+		try {
+			const data = (await apiClient.getCurrentSession()) as IAgent
 			setUser(data)
 			setLoading(false)
-		} else {
+		} catch (error) {
 			setUser(undefined)
 			setLoading(true)
 			void router.push(ROUTES.SIGN_IN)
@@ -40,10 +39,9 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 			// console.log('args', args)
 		},
 		navigateToSignIn: async () => {
-			void get('/api/auth/logout').then(() => {
-				void router.push(ROUTES.SIGN_IN)
-				setUser(undefined)
-			})
+			await apiClient.logout()
+			void router.push(ROUTES.SIGN_IN)
+			setUser(undefined)
 		},
 		user,
 		loading,

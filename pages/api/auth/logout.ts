@@ -1,3 +1,4 @@
+import { STATUS_CODES } from '@/shared/constants'
 import { deleteCookie } from 'cookies-next'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -5,16 +6,14 @@ import type { NextApiRequest, NextApiResponse } from 'next'
  * @swagger
  * /api/auth/logout:
  *  get:
- *    description: Returns the current user meta data in json edited
+ *    operationId: logout
+ *    description: logout endpoint
  *    responses:
  *       200:
- *         description: returns current user object, should only be called
- *          once for a entire load or after sign in
- *       401:
- *         description: if the jwt token is not present in the cookie or its invalid
+ *         description: Logs out a user by deleting the token cookie
  */
 const handler = (req: NextApiRequest, res: NextApiResponse): void => {
 	deleteCookie('token', { req, res })
-	res.json({})
+	res.status(STATUS_CODES.SUCCESS).json(null)
 }
 export default handler

@@ -9,3 +9,15 @@ export interface model1 {
 	var8: number[]
 	var9: number[]
 }
+
+interface Task {
+	userId: number
+	id: number
+	title: string
+	completed: boolean
+}
+
+export interface helloResponseType {
+	tasks: Task[]
+	testObj?: model1
+}
