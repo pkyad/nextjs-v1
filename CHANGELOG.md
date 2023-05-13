@@ -1,5 +1,11 @@
 # @pkyad/test1
 
+## 3.0.0
+
+### Major Changes
+
+- Mock setup for unit tests
+
 ## 2.0.0
 
 ### Major Changes
