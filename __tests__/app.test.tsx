@@ -17,15 +17,14 @@ jest.mock('@/shared/hooks/useAppContext', () => {
 	}
 })
 
-const mocks = {
-	'/api/auth/get-current-session': { firstName: 'Admin Test' },
-	[resolveTRPCPath('example.hello')]: { greeting: 'Hello from tRPC' }
-}
-
-setupMockResponses(mocks)
-
 describe('_app', () => {
 	it('renders a home page', async () => {
+		const mocks = {
+			'/api/auth/get-current-session': { firstName: 'Admin Test' },
+			[resolveTRPCPath('example.hello')]: { greeting: 'Hello from tRPC' }
+		}
+
+		setupMockResponses(mocks)
 		void mockRouter.push('/home')
 
 		await act(async () => {
@@ -36,8 +35,25 @@ describe('_app', () => {
 			expect(screen.getByText('Hello from tRPC')).toBeInTheDocument()
 		})
 	})
+	it('renders a home page -2', async () => {
+		const mocks = {
+			'/api/auth/get-current-session': { firstName: 'Admin Test' },
+			[resolveTRPCPath('example.hello')]: { greeting: 'Hello from' }
+		}
 
-	it('renders a the login page', async () => {
+		setupMockResponses(mocks)
+		void mockRouter.push('/home')
+
+		await act(async () => {
+			render(<MyApp Component={Home} />)
+		})
+		await waitFor(() => {
+			expect(screen.getByText('Admin Test')).toBeInTheDocument()
+			expect(screen.getByText('Hello from')).toBeInTheDocument()
+		})
+	})
+
+	it('renders the login page', async () => {
 		void mockRouter.push('/auth/sign-in')
 
 		jest.spyOn(useAppContextModule, 'default').mockImplementation(() => {

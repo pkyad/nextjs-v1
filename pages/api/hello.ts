@@ -1,12 +1,16 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import mock from '@/mocks/api/hello'
 import { model1 } from 'models/first'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 interface Task {
-  userId: number
-  id: number
-  title: string
-  completed: boolean
+	userId: number
+	id: number
+	title: string
+	completed: boolean
+}
+
+interface helloResponseType {
+	tasks: Task[]
+	testObj?: model1
 }
 
 /**
@@ -19,20 +23,13 @@ interface Task {
  *         description: hello world
  */
 const handler = async (
-  req: NextApiRequest,
-  res: NextApiResponse<{ tasks: Task[], testObj?: model1 }>
+	req: NextApiRequest,
+	res: NextApiResponse<helloResponseType>
 ) => {
-  let data
-  if (process.env.NODE_ENV === 'development') {
-    data = mock
-  } else {
-    const response = await fetch(
-      'https://jsonplaceholder.typicode.com/todos/1'
-    )
-    data = await response.json()
-  }
+	const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+	const data = await response.json()
 
-  res.json({ tasks: [data] })
+	res.json({ tasks: [data] })
 }
 
 export default handler

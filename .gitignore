@@ -49,3 +49,4 @@ public/openapi
 proxy
 .yalc
 models/build
+shared/http-client

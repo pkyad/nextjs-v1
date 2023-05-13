@@ -22,6 +22,7 @@
 		"docs": "jsdoc -c jsdoc.conf.json",
 		"swagger-gen": "rm models/build/*;typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/build' 'models/*.ts';next-swagger-doc-cli swagger.config.json",
 		"update-openapi-proxy": "openapi-generator-cli generate -i http://localhost:8000/openapi?dev-token=$DEV_TOKEN -o shared/proxy --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
+		"update-openapi-client": "openapi-generator-cli generate -i public/swagger.json -o shared/http-client --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
 		"commitlint": "commitlint --edit",
 		"changeset": "changeset",
 		"gen-changelog": "changeset version",
