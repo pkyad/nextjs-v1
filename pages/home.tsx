@@ -7,7 +7,7 @@ const Test = test
 
 const Home = (): React.ReactNode => {
 	const router = useRouter()
-	const hello = trpc.example.hello.useQuery({ text: 'from tRPC' })
+	const { data, isLoading } = trpc.example.hello.useQuery({ text: 'from tRPC' })
 	useEffect(() => {}, [router])
 	return (
 		<>
@@ -15,7 +15,7 @@ const Home = (): React.ReactNode => {
 			<Button color="success" onClick={() => {}}>
 				Success Button
 			</Button>
-			<h1>{hello.data?.greeting}</h1>
+			{isLoading ? <h1>Loading....</h1> : <h1>{data?.greeting}</h1>}
 			<Test />
 		</>
 	)
