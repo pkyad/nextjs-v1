@@ -6,13 +6,6 @@ export const STATUS_CODES = {
 	SERVER_ERROR: 500
 }
 
-export const REQUEST_TYPE = {
-	GET: 'GET',
-	POST: 'POST',
-	PUT: 'PUT',
-	DELETE: 'DELETE'
-}
-
 export const ROUTES = {
 	SIGN_IN: '/auth/sign-in',
 	HOME: '/home'

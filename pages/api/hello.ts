@@ -1,4 +1,4 @@
-import { helloResponseType } from 'models/first'
+import { helloResponseType } from 'models/hello'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 /**

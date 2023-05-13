@@ -1,9 +1,7 @@
-/* eslint-disable jsdoc/no-missing-syntax */
 import { appRouter } from '@/server/root'
 import { createTRPCContext } from '@/server/trpc'
 import { createNextApiHandler } from '@trpc/server/adapters/next'
 
-// export API handler
 export default createNextApiHandler({
 	router: appRouter,
 	createContext: createTRPCContext,

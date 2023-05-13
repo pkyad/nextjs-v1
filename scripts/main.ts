@@ -8,7 +8,7 @@ console.log('running', config1.endpoints)
 
 const main = async (): Promise<void> => {
 	const answer = await select({
-		message: 'Select a package manager',
+		message: 'Select the service endpoint',
 		choices: config1.endpoints.map((endpoint) => {
 			return {
 				value: endpoint.alias,
