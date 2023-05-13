@@ -1,10 +1,10 @@
 import Header from '@/components/molecules/header'
 import Navigator from '@/components/molecules/navigator'
-import { api } from '@/shared/api'
 import Context from '@/shared/appContext'
 import { ROUTES, STATUS_CODES, URLS } from '@/shared/constants'
 import { get } from '@/shared/HTTP'
 import theme from '@/shared/theme'
+import { trpc } from '@/shared/trpc-client'
 import { IAgent } from '@/shared/types'
 import '@/styles/global.css'
 import { ThemeProvider } from '@mui/styles'
@@ -105,4 +105,4 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 	}
 }
 
-export default api.withTRPC(MyApp)
+export default trpc.withTRPC(MyApp)

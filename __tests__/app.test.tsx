@@ -2,12 +2,12 @@
 import MyApp from '@/pages/_app'
 import SignIn from '@/pages/auth/sign-in'
 import Home from '@/pages/home'
-import { STATUS_CODES } from '@/shared/constants'
-import mockSetup from '@/shared/helpers/mock-setup'
 import * as useAppContextModule from '@/shared/hooks/useAppContext'
+import { resolveTRPCPath } from '@/shared/trpc-client'
 import { act, render, screen, waitFor } from '@testing-library/react'
 import mockRouter from 'next-router-mock'
 import React from 'react'
+import setupMockResponses from './utils/setup'
 
 jest.mock('next/router', () => require('next-router-mock'))
 jest.mock('@/shared/hooks/useAppContext', () => {
@@ -16,7 +16,14 @@ jest.mock('@/shared/hooks/useAppContext', () => {
 		...jest.requireActual('@/shared/hooks/useAppContext')
 	}
 })
-mockSetup()
+
+const mocks = {
+	'/api/auth/get-current-session': { firstName: 'Admin Test' },
+	[resolveTRPCPath('example.hello')]: { greeting: 'Hello from tRPC' }
+}
+
+setupMockResponses(mocks)
+
 describe('_app', () => {
 	it('renders a home page', async () => {
 		void mockRouter.push('/home')
@@ -37,12 +44,6 @@ describe('_app', () => {
 			return { loading: false, user: null, fetchUser: jest.fn() }
 		})
 
-		global.fetch = async () => {
-			return await Promise.resolve({
-				json: async () => await Promise.resolve({}),
-				status: STATUS_CODES.SERVER_ERROR
-			})
-		}
 		await act(async () => {
 			render(<MyApp Component={SignIn} />)
 		})

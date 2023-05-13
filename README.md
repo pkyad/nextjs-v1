@@ -71,3 +71,8 @@ Note: After changing the models/index.ts you need to run `yarn swagger-gen` , on
 script is getting used. This will generate the corresponding yaml files in models/build directory
 
 Todo: Remove the need to convert the interface to yaml mannually
+
+## Test file location
+
+For page testing , use ROOT/**tests**
+and individual components use the respective component folder

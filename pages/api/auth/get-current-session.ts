@@ -1,7 +1,10 @@
 /* istanbul ignore file */
 import { STATUS_CODES } from '@/shared/constants'
 import jwt from 'jsonwebtoken'
-import { InvalidSessionResponse, SessionResponse } from 'models'
+import {
+	InvalidSessionResponse,
+	SessionResponse
+} from 'models/get-current-session'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 /**

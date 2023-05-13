@@ -20,7 +20,7 @@
 		"e2e": "start-server-and-test dev http://localhost:3000 cypress",
 		"e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless",
 		"docs": "jsdoc -c jsdoc.conf.json",
-		"swagger-gen": "typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/build' 'models/*.ts';next-swagger-doc-cli swagger.config.json",
+		"swagger-gen": "rm models/build/*;typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/build' 'models/*.ts';next-swagger-doc-cli swagger.config.json",
 		"update-openapi-proxy": "openapi-generator-cli generate -i http://localhost:8000/openapi?dev-token=$DEV_TOKEN -o shared/proxy --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
 		"commitlint": "commitlint --edit",
 		"changeset": "changeset",

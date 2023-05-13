@@ -3,3 +3,4 @@
 
 yarn cover
 yarn e2e:headless
+yarn build

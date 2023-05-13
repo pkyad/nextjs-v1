@@ -1,4 +1,4 @@
-import { api } from '@/shared/api'
+import { trpc } from '@/shared/trpc-client'
 import test, { Button } from '@pkyad/uilib1'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
@@ -7,7 +7,7 @@ const Test = test
 
 const Home = (): React.ReactNode => {
 	const router = useRouter()
-	const hello = api.example.hello.useQuery({ text: 'from tRPC' })
+	const hello = trpc.example.hello.useQuery({ text: 'from tRPC' })
 	useEffect(() => {}, [router])
 	return (
 		<>

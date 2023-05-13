@@ -4,11 +4,17 @@
  *
  * We also create a few inference helpers for input and output types.
  */
-import { type AppRouter } from '@/server/api/root'
+import { type AppRouter } from '@/server/root'
 import { httpBatchLink, loggerLink } from '@trpc/client'
 import { createTRPCNext } from '@trpc/next'
 import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
 import superjson from 'superjson'
+
+export const trpcPath = '/api/trpc'
+
+export const resolveTRPCPath = (identifier: string): string => {
+	return `${trpcPath}/${identifier}`
+}
 
 const getBaseUrl = (): string => {
 	if (typeof window !== 'undefined') return '' // browser should use relative url
@@ -17,8 +23,8 @@ const getBaseUrl = (): string => {
 }
 
 /** A set of type-safe react-query hooks for your tRPC API. */
-export const api = createTRPCNext<AppRouter>({
-	config () {
+export const trpc = createTRPCNext<AppRouter>({
+	config: () => {
 		return {
 			/**
 			 * Transformer used for data de-serialization from the server.
@@ -39,7 +45,7 @@ export const api = createTRPCNext<AppRouter>({
 						(opts.direction === 'down' && opts.result instanceof Error)
 				}),
 				httpBatchLink({
-					url: `${getBaseUrl()}/api/trpc`
+					url: `${getBaseUrl()}${trpcPath}`
 				})
 			]
 		}
