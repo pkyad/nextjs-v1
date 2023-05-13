@@ -1,4 +1,4 @@
-import { createTRPCRouter, publicProcedure } from '@/server/api/trpc'
+import { createTRPCRouter, publicProcedure } from '@/server/trpc'
 import { z } from 'zod'
 
 const outputSchema = z.object({

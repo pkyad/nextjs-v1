@@ -1,6 +1,6 @@
 /* eslint-disable jsdoc/no-missing-syntax */
-import { appRouter } from '@/server/api/root'
-import { createTRPCContext } from '@/server/api/trpc'
+import { appRouter } from '@/server/root'
+import { createTRPCContext } from '@/server/trpc'
 import { createNextApiHandler } from '@trpc/server/adapters/next'
 
 // export API handler

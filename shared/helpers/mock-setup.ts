@@ -1,4 +1,4 @@
-import { outputT } from '@/server/api/routers/example'
+import { outputT } from '@/server/routers/example'
 import { SessionResponse } from 'models'
 import { STATUS_CODES } from '../constants'
 

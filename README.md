@@ -60,3 +60,14 @@ yarn gen-changelog
 then commit files with
 
 git commit -m "chore: version release"
+
+## Swagger workflow - REST endpoints
+
+If you are adding a REST endpoint , add the interfaces in models/index.ts for the responses
+and then use it in the schema reference in the swagger doc string and also in the response type of the
+endpoint handler
+
+Note: After changing the models/index.ts you need to run `yarn swagger-gen` , only the typeconv part of the
+script is getting used. This will generate the corresponding yaml files in models/build directory
+
+Todo: Remove the need to convert the interface to yaml mannually
