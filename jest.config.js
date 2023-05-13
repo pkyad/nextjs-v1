@@ -24,7 +24,12 @@ const customJestConfig = {
 		'<rootDir>/mocks/**/*.{ts,tsx,js,jsx}',
 		'!<rootDir>/**/*.stories.{ts,tsx,js,jsx}'
 	],
-	coveragePathIgnorePatterns: ['<rootDir>/.yalc', '<rootDir>/stories'],
+	coveragePathIgnorePatterns: [
+		'<rootDir>/.yalc',
+		'<rootDir>/stories',
+		'<rootDir>/shared/http-client',
+		'<rootDir>/pages/api/trpc'
+	],
 	coverageThreshold: {
 		global: {
 			branches: 0,

@@ -21,6 +21,9 @@ describe('_app', () => {
 	it('renders a home page', async () => {
 		const mocks = {
 			'/api/auth/get-current-session': { firstName: 'Admin Test' },
+			'/api/hello': {
+				tasks: [{ userId: 1, id: 1, title: 'title 1', completed: false }]
+			},
 			[resolveTRPCPath('example.hello')]: { greeting: 'Hello from tRPC' }
 		}
 
@@ -38,6 +41,9 @@ describe('_app', () => {
 	it('renders a home page -2', async () => {
 		const mocks = {
 			'/api/auth/get-current-session': { firstName: 'Admin Test' },
+			'/api/hello': {
+				tasks: [{ userId: 1, id: 1, title: 'title 1', completed: false }]
+			},
 			[resolveTRPCPath('example.hello')]: { greeting: 'Hello from' }
 		}
 

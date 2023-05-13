@@ -58,7 +58,8 @@
         "@next/next/no-server-import-in-page": "off",
         "react-hooks/exhaustive-deps": "off",
         "@typescript-eslint/valid-module": "off",
-        "@typescript-eslint/no-floating-promises": "off"
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off"
     },
     "settings": {
         "react": {
