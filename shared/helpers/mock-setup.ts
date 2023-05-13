@@ -1,4 +1,5 @@
 import { outputT } from '@/server/api/routers/example'
+import { SessionResponse } from 'models'
 import { STATUS_CODES } from '../constants'
 
 interface trpcResponseType {
@@ -9,20 +10,15 @@ interface trpcResponseType {
 	}
 }
 
-interface httpResponseType {
-	firstName: string
-}
 const setup = (): void => {
 	global.fetch = async (url): Promise<any> => {
 		return await Promise.resolve({
-			json: async (): Promise<trpcResponseType[] | httpResponseType> => {
+			json: async (): Promise<trpcResponseType[] | SessionResponse> => {
 				return await new Promise((resolve) => {
 					if (url === '/api/auth/get-current-session') {
 						resolve({ firstName: 'Admin Test' })
 					} else {
-						resolve([
-							{ result: { data: { json: { greeting: 'Hello from tRPC' } } } }
-						])
+						resolve(TRPCResponse({ greeting: 'Hello from tRPC' }))
 					}
 				})
 			},
@@ -30,5 +26,7 @@ const setup = (): void => {
 		})
 	}
 }
-
+export const TRPCResponse = (data: any): trpcResponseType[] => {
+	return [{ result: { data: { json: data } } }]
+}
 export default setup

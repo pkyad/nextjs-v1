@@ -26,6 +26,7 @@ describe('_app', () => {
 		})
 		await waitFor(() => {
 			expect(screen.getByText('Admin Test')).toBeInTheDocument()
+			expect(screen.getByText('Hello from tRPC')).toBeInTheDocument()
 		})
 	})
 
