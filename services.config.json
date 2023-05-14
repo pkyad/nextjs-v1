@@ -1,4 +1,5 @@
 {
+	"version": "0.0.1",
 	"endpoints": [
 		{
 			"stage": {
@@ -9,7 +10,7 @@
 				"schema": "http://localhost:9000/openapi?ci-token=$CI_TOKEN&format=openapi-json",
 				"base_url": "http://localhost:9000"
 			},
-			"alias": "djangoServer",
+			"alias": "django",
 			"authKey": "django_v1_auth_token"
 		},
 		{
@@ -21,7 +22,7 @@
 				"schema": "http://localhost:8000/api/openapi.json?ci-token=$CI_TOKEN",
 				"base_url": "http://localhost:8000"
 			},
-			"alias": "fastapiServer",
+			"alias": "fastapi",
 			"authKey": "fastapi_v1_auth_token"
 		}
 	]

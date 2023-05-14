@@ -130,6 +130,16 @@ export default ${service.alias as string}Client
 				`services/${service.alias as string}/index.ts`,
 				indexTemplate
 			)
+
+			const serviceIndexTemplate =
+				services.endpoints
+					.map((endpoint) => {
+						return `export { default as ${endpoint.alias}Service } from './${endpoint.alias}'`
+					})
+					.join('\n') + '\n'
+
+			fs.writeFileSync('services/index.ts', serviceIndexTemplate)
+
 			child.stderr && console.log(child.stderr)
 		} catch (err) {
 			console.error(err)
