@@ -1,0 +1,27 @@
+$primary-color: #64ff00;
+
+:export {
+	primaryColor: $primary-color;
+}
+
+.container {
+	background: red;
+	width: 100px;
+	height: 100px;
+	.child {
+		background: rgb(71, 56, 56);
+		width: 25px;
+		height: 25px;
+	}
+	:global .second-child {
+		background: blue;
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.inner {
+	background: green;
+	width: 50px;
+	height: 50px;
+}
