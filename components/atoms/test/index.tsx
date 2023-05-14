@@ -10,6 +10,7 @@ const Test = (): JSX.Element => {
 				<div className={variables.inner}></div>
 			</div>
 			<div className="second-child"></div>
+			{/* this does not get styles , means the parent child relationship is working fine */}
 		</>
 	)
 }

@@ -3,11 +3,9 @@ import Navigator from '@/components/molecules/navigator'
 import Context from '@/shared/appContext'
 import { ROUTES } from '@/shared/constants'
 import apiClient from '@/shared/http-client'
-import theme from '@/shared/theme'
 import { trpc } from '@/shared/trpc-client'
 import { IAgent } from '@/shared/types'
 import '@/styles/global.css'
-import { ThemeProvider } from '@mui/styles'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -74,7 +72,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 		)
 	} else {
 		return (
-			<ThemeProvider theme={theme}>
+			<>
 				{loading && (
 					<>
 						<Head key={'loading-head'}>
@@ -98,7 +96,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 						</div>
 					</Context.Provider>
 				)}
-			</ThemeProvider>
+			</>
 		)
 	}
 }

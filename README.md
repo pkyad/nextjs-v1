@@ -75,3 +75,5 @@ Todo: Remove the need to convert the interface to yaml mannually
 
 For page testing , use ROOT/**tests**
 and individual components use the respective component folder
+
+Autocompletion of SCSS module , at the import time and at the time of usage can be a big hit to productivity.
