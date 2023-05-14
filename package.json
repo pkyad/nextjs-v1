@@ -3,7 +3,7 @@
 	"private": true,
 	"version": "4.0.0",
 	"scripts": {
-		"postinstall": "yarn gen-client;yarn fetch-services",
+		"postinstall": "yarn gen-client;yarn fetch-services --service=all",
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",

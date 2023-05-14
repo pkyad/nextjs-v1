@@ -15,13 +15,15 @@ type ServiceSpec = Record<string, string | Endpoint>
 interface OptionsType {
 	env: string
 	help: boolean
+	service: string | undefined
 }
 
 const parseArgumentsIntoOptions = (rawArgs: string[]): OptionsType => {
 	const args = arg(
 		{
 			'--help': Boolean,
-			'--env': String
+			'--env': String,
+			'--service': String
 		},
 		{
 			argv: rawArgs.slice(2)
@@ -29,7 +31,8 @@ const parseArgumentsIntoOptions = (rawArgs: string[]): OptionsType => {
 	)
 	return {
 		env: args['--env'] ?? 'stage',
-		help: args['--help'] ?? false
+		help: args['--help'] ?? false,
+		service: args['--service'] ?? undefined
 	}
 }
 
@@ -57,23 +60,27 @@ const main = async (): Promise<void> => {
 		console.log('Exiting...')
 		return
 	}
-	const answer = await select({
-		message: 'Select the service endpoint',
-		choices: [
-			...services.endpoints.map((service: ServiceSpec) => {
-				return {
-					value: service.alias as string,
-					label: service.alias,
-					description: (service[options.env] as Endpoint).schema
+	let answer = options.service
+
+	if (!answer) {
+		answer = await select({
+			message: 'Select the service endpoint',
+			choices: [
+				...services.endpoints.map((service: ServiceSpec) => {
+					return {
+						value: service.alias as string,
+						label: service.alias,
+						description: (service[options.env] as Endpoint).schema
+					}
+				}),
+				{
+					value: 'all',
+					label: 'All of the above',
+					description: 'Fetches / Updates all services'
 				}
-			}),
-			{
-				value: 'all',
-				label: 'All of the above',
-				description: 'Fetches / Updates all services'
-			}
-		]
-	})
+			]
+		})
+	}
 	console.log('Started.....')
 	console.log(`Fetching for ${answer}`)
 	let servicesToFetch = []
