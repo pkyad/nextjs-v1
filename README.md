@@ -75,5 +75,3 @@ Todo: Remove the need to convert the interface to yaml mannually
 
 For page testing , use ROOT/**tests**
 and individual components use the respective component folder
-
-Notes : please install openapi-generator-cli==6.2.1 globally
