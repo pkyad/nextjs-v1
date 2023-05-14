@@ -1,0 +1,16 @@
+{
+	"endpoints": [
+		{
+			"stage": "http://localhost:9000/openapi?dev-token=$DEV_TOKEN",
+			"prod": "http://localhost:9000/openapi?ci-token=$CI_TOKEN",
+			"alias": "django_v1",
+			"authKey": "django_v1_auth_token"
+		},
+		{
+			"stage": "http://localhost:8000/api/openapi.json?dev-token=$DEV_TOKEN",
+			"prod": "http://localhost:8000/api/openapi.json?ci-token=$CI_TOKEN",
+			"alias": "fastapi_v1",
+			"authKey": "fastapi_v1_auth_token"
+		}
+	]
+}

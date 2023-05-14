@@ -46,7 +46,7 @@ cypress/videos
 docs
 public/swagger.json
 public/openapi
-proxy
+services
 .yalc
 models/build
 shared/http-client/.openapi-generator

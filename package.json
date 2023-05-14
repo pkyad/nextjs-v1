@@ -3,6 +3,7 @@
 	"private": true,
 	"version": "3.0.0",
 	"scripts": {
+		"postinstall": "yarn gen-client",
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
@@ -21,13 +22,13 @@
 		"e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless",
 		"docs": "jsdoc -c jsdoc.conf.json",
 		"swagger-gen": "rm models/build/*;typeconv -f ts -t oapi --oapi-format yaml --output-extension 'swagger.yaml' --output-directory 'models/build' 'models/*.ts';next-swagger-doc-cli swagger.config.json",
-		"update-openapi-proxy": "openapi-generator-cli generate -i http://localhost:8000/openapi?dev-token=$DEV_TOKEN -o shared/proxy --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
+		"update-openapi-service": "openapi-generator-cli generate --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
 		"update-openapi-client": "openapi-generator-cli generate -i public/swagger.json -o shared/http-client --generator-name typescript-fetch --additional-properties=typescriptThreePlus=true",
 		"commitlint": "commitlint --edit",
 		"changeset": "changeset",
 		"gen-changelog": "changeset version",
-		"script1": "tsx scripts/main.ts",
-		"gen-client": "yarn swagger-gen;tsx scripts/fix-swagger.ts;yarn update-openapi-client"
+		"gen-client": "yarn swagger-gen;tsx scripts/fix-swagger.ts;yarn update-openapi-client",
+		"fetch-services": "tsx scripts/fetch-services.ts"
 	},
 	"husky": {
 		"hooks": {
