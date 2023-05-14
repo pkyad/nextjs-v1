@@ -1,5 +1,11 @@
 # @pkyad/test1
 
+## 4.0.0
+
+### Major Changes
+
+- Service client generation support
+
 ## 3.0.0
 
 ### Major Changes
