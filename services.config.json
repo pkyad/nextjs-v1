@@ -1,8 +1,8 @@
 {
 	"endpoints": [
 		{
-			"stage": "http://localhost:9000/openapi?dev-token=$DEV_TOKEN",
-			"prod": "http://localhost:9000/openapi?ci-token=$CI_TOKEN",
+			"stage": "http://localhost:9000/openapi?dev-token=$DEV_TOKEN&format=openapi-json",
+			"prod": "http://localhost:9000/openapi?ci-token=$CI_TOKEN&format=openapi-json",
 			"alias": "django_v1",
 			"authKey": "django_v1_auth_token"
 		},
