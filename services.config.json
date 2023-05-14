@@ -1,15 +1,27 @@
 {
 	"endpoints": [
 		{
-			"stage": "http://localhost:9000/openapi?dev-token=$DEV_TOKEN&format=openapi-json",
-			"prod": "http://localhost:9000/openapi?ci-token=$CI_TOKEN&format=openapi-json",
-			"alias": "django_v1",
+			"stage": {
+				"schema": "http://localhost:9000/openapi?dev-token=$DEV_TOKEN&format=openapi-json",
+				"base_url": "https://localhost:9000"
+			},
+			"prod": {
+				"schema": "http://localhost:9000/openapi?ci-token=$CI_TOKEN&format=openapi-json",
+				"base_url": "http://localhost:9000"
+			},
+			"alias": "djangoServer",
 			"authKey": "django_v1_auth_token"
 		},
 		{
-			"stage": "http://localhost:8000/api/openapi.json?dev-token=$DEV_TOKEN",
-			"prod": "http://localhost:8000/api/openapi.json?ci-token=$CI_TOKEN",
-			"alias": "fastapi_v1",
+			"stage": {
+				"schema": "http://localhost:8000/api/openapi.json?dev-token=$DEV_TOKEN",
+				"base_url": "http://localhost:8000"
+			},
+			"prod": {
+				"schema": "http://localhost:8000/api/openapi.json?ci-token=$CI_TOKEN",
+				"base_url": "http://localhost:8000"
+			},
+			"alias": "fastapiServer",
 			"authKey": "fastapi_v1_auth_token"
 		}
 	]
