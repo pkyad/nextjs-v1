@@ -59,7 +59,8 @@
         "react-hooks/exhaustive-deps": "off",
         "@typescript-eslint/valid-module": "off",
         "@typescript-eslint/no-floating-promises": "off",
-        "@typescript-eslint/strict-boolean-expressions": "off"
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/restrict-template-expressions": "off"
     },
     "settings": {
         "react": {
