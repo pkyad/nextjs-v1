@@ -43,6 +43,20 @@ const main = async (): Promise<void> => {
 		return
 	}
 
+	if (options.env === 'stage' && !process.env.DEV_TOKEN) {
+		console.log(
+			'DEV_TOKEN not preset in environment variable. Please set it by using echo DEV_TOKEN=secret or by adding it in .bashrc'
+		)
+		console.log('Exiting...')
+		return
+	}
+	if (options.env === 'prod' && !process.env.CI_TOKEN) {
+		console.log(
+			'CI_TOKEN not preset in environment variable. This option is only supposed to be used by a CI agent. Are you sure you want to fetch production schema'
+		)
+		console.log('Exiting...')
+		return
+	}
 	const answer = await select({
 		message: 'Select the service endpoint',
 		choices: [
@@ -75,7 +89,17 @@ const main = async (): Promise<void> => {
 	}
 
 	;(servicesToFetch as ServiceSpec[]).forEach(async (service) => {
-		const response = await fetch((service[options.env] as Endpoint).schema)
+		let specURL = (service[options.env] as Endpoint).schema.replace(
+			'$DEV_TOKEN',
+			process.env.DEV_TOKEN as string
+		)
+		if (options.env === 'prod') {
+			specURL = (service[options.env] as Endpoint).schema.replace(
+				'$CI_TOKEN',
+				process.env.CI_TOKEN as string
+			)
+		}
+		const response = await fetch(specURL)
 		const spec: any = await response.json()
 		Object.keys(spec.paths).forEach((endpoint) => {
 			try {

@@ -9,7 +9,7 @@ export const exampleRouter = createTRPCRouter({
 		.query(async ({ input }) => {
 			const data = await fastapiService.testEndpoint()
 			return {
-				greeting: `Hello ${input.text} ${data.val2}`
+				greeting: `Hello ${input.text} ${data.val1}`
 			}
 		})
 })
