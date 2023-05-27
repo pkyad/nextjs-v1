@@ -2,7 +2,7 @@ import { INavItemProps } from '@/shared/types'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import useStyles from './navItem.styles'
+import styles from './navItem.module.scss'
 
 const NavItem = ({
 	link,
@@ -10,7 +10,6 @@ const NavItem = ({
 	strict = false
 }: INavItemProps): JSX.Element => {
 	const { route } = useRouter()
-	const classess = useStyles()
 
 	let active
 	if (strict) {
@@ -23,7 +22,7 @@ const NavItem = ({
 		<>
 			<li className={active ? 'active' : ''}>
 				<Link href={link}>
-					<span className={classess.link}>{label}</span>
+					<span className={styles.link}>{label}</span>
 				</Link>
 			</li>
 		</>

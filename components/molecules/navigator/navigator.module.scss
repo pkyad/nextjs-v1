@@ -1,0 +1,13 @@
+.wrapper {
+	li {
+		margin-left: 1.5rem;
+		border-bottom: solid 2px black;
+		padding-bottom: 0.5rem;
+	}
+	li:hover {
+		border-bottom: solid 2px white;
+	}
+	:global .active {
+		border-bottom: solid 2px white;
+	}
+}

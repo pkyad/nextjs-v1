@@ -1,5 +1,4 @@
 /* istanbul ignore file */
-import { ServerStyleSheets } from '@mui/styles'
 import { NextPage } from 'next'
 import Document, {
 	DocumentContext,
@@ -9,7 +8,6 @@ import Document, {
 	NextScript
 } from 'next/document'
 import React from 'react'
-import { ServerStyleSheet } from 'styled-components'
 
 const MyDocument: NextPage = () => {
 	return (
@@ -32,31 +30,10 @@ const MyDocument: NextPage = () => {
 }
 
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-	const styledComponentsSheet = new ServerStyleSheet()
-	const materialSheets = new ServerStyleSheets()
-	const originalRenderPage = ctx.renderPage
-
-	try {
-		ctx.renderPage = () =>
-			originalRenderPage({
-				enhanceApp: (App) => (props) =>
-					styledComponentsSheet.collectStyles(
-						materialSheets.collect(<App {...props} />)
-					)
-			})
-		const initialProps = await Document.getInitialProps(ctx)
-		return {
-			...initialProps,
-			styles: (
-				<React.Fragment>
-					{initialProps.styles}
-					{materialSheets.getStyleElement()}
-					{styledComponentsSheet.getStyleElement()}
-				</React.Fragment>
-			)
-		}
-	} finally {
-		styledComponentsSheet.seal()
+	const initialProps = await Document.getInitialProps(ctx)
+	return {
+		...initialProps,
+		styles: <React.Fragment>{initialProps.styles}</React.Fragment>
 	}
 }
 

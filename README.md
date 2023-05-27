@@ -77,3 +77,13 @@ For page testing , use ROOT/**tests**
 and individual components use the respective component folder
 
 Autocompletion of SCSS module , at the import time and at the time of usage can be a big hit to productivity.
+
+## NOTES
+
+"postinstall": "yarn gen-client;yarn fetch-services --service=all",
+
+```javascript
+sassOptions: {
+  additionalData: `@import "src/styles/variables.scss"; @import "src/styles/mixins.scss";`,
+},
+```

@@ -1,0 +1,19 @@
+.wrapper {
+	display: flex;
+	background-color: #000;
+	align-items: center;
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	z-index: 4;
+}
+.logoWrapper {
+	height: 3rem;
+	width: 3rem;
+	position: relative;
+	margin: 1rem;
+}
+.brandName {
+	color: white;
+	font-size: 1.4rem;
+}

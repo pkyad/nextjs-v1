@@ -3,7 +3,7 @@ import { ROUTES } from '@/shared/constants'
 import useAppContext from '@/shared/hooks/useAppContext'
 import apiClient from '@/shared/http-client'
 import validator from '@/shared/validators/auth-form'
-import { Alert, Button, TextField } from '@mui/material'
+import globalStyles from '@/styles/global.module.scss'
 import { ErrorObject } from 'ajv'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -74,21 +74,21 @@ export const SignIn = (): React.ReactNode => {
 				</div>
 				<h1 className="mt-3">Sign in with username and password</h1>
 
-				<TextField
-					onChange={onUsernameChange}
+				<input
 					required
-					className="!mt-10"
-					label="Username"
+					onChange={onUsernameChange}
+					className={`!mt-10 ${globalStyles.input}`}
+					placeholder="Username"
 				/>
 
 				<FieldError errors={errors} fieldKey="/username" />
 
-				<TextField
+				<input
+					required
 					onKeyUp={handleKeyUp}
 					onChange={onPasswordChange}
-					required
-					className="!mt-5"
-					label="Password"
+					className={`!mt-5 ${globalStyles.input}`}
+					placeholder="Password"
 					type="password"
 				/>
 
@@ -96,16 +96,16 @@ export const SignIn = (): React.ReactNode => {
 
 				<div className="mt-10">
 					{serversideError !== null && (
-						<Alert severity="error" color="error">
-							{serversideError}
-						</Alert>
+						<span className={globalStyles.errorLabel}>{serversideError}</span>
 					)}
 				</div>
 
-				<Button onClick={handleSubmit} className="mt-10" variant="outlined">
-					{' '}
-					Submit{' '}
-				</Button>
+				<button
+					onClick={handleSubmit}
+					className={`mt-10 ${globalStyles.button}`}
+				>
+					Submit
+				</button>
 			</div>
 		</div>
 	)

@@ -10,6 +10,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import '../node_modules/@pkyad/uilib1/dist/esm/index.css'
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 	const router = useRouter()
