@@ -45,11 +45,10 @@
 		]
 	},
 	"engines": {
-		"yarn": "^1.22.19",
-		"node": ">=16.0.0 <17.0.0"
+		"yarn": "^1.22.19"
 	},
 	"dependencies": {
-		"@pkyad/uilib1": "4.2.0",
+		"@pkyad/uilib1": "5.5.0",
 		"@tanstack/react-query": "^4.29.5",
 		"@trpc/client": "^10.25.1",
 		"@trpc/next": "^10.25.1",
@@ -59,7 +58,6 @@
 		"@types/formidable": "^2.0.5",
 		"ajv": "^8.11.0",
 		"autoprefixer": "^10.4.7",
-		"axios": "^0.27.2",
 		"classnames": "^2.3.1",
 		"cookies-next": "^2.1.1",
 		"crypto-js": "^4.1.1",
@@ -69,9 +67,9 @@
 		"next": "13.1.2",
 		"next-swagger-doc": "^0.3.6",
 		"postcss": "^8.4.14",
-		"react": "^18.1.0",
+		"react": "^18.2.0",
 		"react-cookie": "^4.1.1",
-		"react-dom": "^18.1.0",
+		"react-dom": "^18.2.0",
 		"react-file-drop": "^3.1.5",
 		"react-icons": "^4.4.0",
 		"sharp": "^0.31.3",
@@ -99,7 +97,7 @@
 		"@testing-library/user-event": "14.2.0",
 		"@trivago/prettier-plugin-sort-imports": "^4.1.1",
 		"@types/jsonwebtoken": "^9.0.2",
-		"@types/react": "18.0.9",
+		"@types/react": "18.0.26",
 		"@types/swagger-ui-react": "^4.11.0",
 		"@typescript-eslint/eslint-plugin": "^5.0.0",
 		"arg": "^5.0.2",

@@ -1,0 +1,14 @@
+FROM debian:bullseye-slim
+RUN apt update
+RUN apt install git zsh curl nano make gcc wget build-essential -y
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
+RUN wget 'https://github.com/pkyad/s-dist/raw/master/staffe' -P /usr/bin
+RUN chmod u+x /usr/bin/staffe
+RUN echo "zsh" >> ~/.bashrc 
+
+# install nodejs
+RUN sh -c "$(curl -fsSL https://deb.nodesource.com/setup_current.x)" -y
+RUN apt install nodejs -y
+RUN npm install -g yarn
+RUN npm install -g node-gyp
+RUN echo "zsh" >> ~/.bashrc 

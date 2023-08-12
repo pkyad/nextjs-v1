@@ -87,3 +87,22 @@ sassOptions: {
   additionalData: `@import "src/styles/variables.scss"; @import "src/styles/mixins.scss";`,
 },
 ```
+
+
+
+FROM debian:bullseye-slim
+RUN apt update
+RUN apt install git -y
+RUN apt install zsh -y
+RUN apt install curl -y
+RUN apt install nano -y
+RUN apt install make -y
+RUN apt install gcc -y
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
+RUN echo "zsh" >> ~/.bashrc 
+
+# install nodejs
+RUN sh -c "$(curl -fsSL https://deb.nodesource.com/setup_current.x)" -y
+RUN apt install nodejs -y
+RUN npm install -g yarn
+

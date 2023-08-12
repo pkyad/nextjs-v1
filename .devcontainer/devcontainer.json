@@ -1,0 +1,6 @@
+{
+	"name": "staffe::test1",
+	"dockerComposeFile": "../docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace"
+}

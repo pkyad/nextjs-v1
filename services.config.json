@@ -1,29 +1,14 @@
 {
-	"version": "0.0.1",
-	"endpoints": [
-		{
-			"stage": {
-				"schema": "http://localhost:9000/openapi?dev-token=$DEV_TOKEN&format=openapi-json",
-				"base_url": "https://localhost:9000"
-			},
-			"prod": {
-				"schema": "http://localhost:9000/openapi?ci-token=$CI_TOKEN&format=openapi-json",
-				"base_url": "http://localhost:9000"
-			},
-			"alias": "django",
-			"authKey": "django_v1_auth_token"
-		},
-		{
-			"stage": {
-				"schema": "http://localhost:8000/api/openapi.json?dev-token=$DEV_TOKEN",
-				"base_url": "http://localhost:8000"
-			},
-			"prod": {
-				"schema": "http://localhost:8000/api/openapi.json?ci-token=$CI_TOKEN",
-				"base_url": "http://localhost:8000"
-			},
-			"alias": "fastapi",
-			"authKey": "fastapi_v1_auth_token"
-		}
-	]
+  "schema": "1.0.0",
+  "services": [
+    {
+      "id": 1,
+      "name": "iam",
+      "prod_url": "http://localhost:8001",
+      "prod_schema_url": "/swagger/?format=openapi",
+      "stage_url": "http://localhost:8001",
+      "stage_schema_url": "/swagger/?format=openapi",
+      "auth_token_env_key": "iam_auth"
+    }
+  ]
 }
