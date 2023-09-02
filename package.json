@@ -27,7 +27,8 @@
 		"changeset": "changeset",
 		"gen-changelog": "changeset version",
 		"gen-client": "yarn swagger-gen;tsx scripts/fix-swagger.ts;yarn update-openapi-client",
-		"fetch-services": "tsx scripts/fetch-services.ts"
+		"fetch-services": "tsx scripts/fetch-services.ts",
+		"cy-setup": "cypress install"
 	},
 	"husky": {
 		"hooks": {

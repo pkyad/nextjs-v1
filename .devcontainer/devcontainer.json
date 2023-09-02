@@ -2,5 +2,6 @@
 	"name": "staffe::test1",
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/workspace"
+	"workspaceFolder": "/workspace",
+	"forwardPorts": [8080]
 }
