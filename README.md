@@ -106,3 +106,13 @@ RUN sh -c "$(curl -fsSL https://deb.nodesource.com/setup_current.x)" -y
 RUN apt install nodejs -y
 RUN npm install -g yarn
 
+
+x11 display settings notes : 
+
+by default the authentcation is enforced. 
+
+```export DISPLAY=:1```
+```xhost +```
+
+you can easily find the diplay ID by opening the example terminal app included in xquartz app
+
